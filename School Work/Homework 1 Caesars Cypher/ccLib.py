@@ -8,8 +8,9 @@ CIPHER_PATH = "./EDFiles/ciphertext.txt"
 
 
 def encrypt(key):
-    n = key
+    n = int(key)
     file_contents = ""
+    cipherString = ""
     with open(PLAIN_PATH, 'r') as file:
         file_contents = file.read()
 
@@ -17,22 +18,26 @@ def encrypt(key):
     for char in file_contents:
         if char.isupper():
             char_index = ALPHABET_UPPERCASE.index(char)
-            char = ALPHABET_UPPERCASE[(char_index + n) % 25]
+            char = ALPHABET_UPPERCASE[25 % (char_index + n)]
+            cipherString += char
         elif char.islower():
             char_index = ALPHABET_LOWERCASE.index(char)
-            char = ALPHABET_LOWERCASE[(char_index + n) % 25]
+            char = ALPHABET_LOWERCASE[25 % (char_index + n)]
+            cipherString += char
         elif char.isdigit():
             char_index = NUMBERS.index(char)
-            char = NUMBERS[(char_index + n) % 8]
+            char = NUMBERS[8 % (char_index + n)]
+            cipherString += char
 
     # Put it file contents into Cyphertext
     with open(CIPHER_PATH, 'w') as file:
-        file.write(file_contents)
+        file.write(cipherString)
 
 
 def decrypt(key):
-    n = key
+    n = int(key)
     file_contents = ""
+    plainString = ""
     with open(CIPHER_PATH, 'r') as file:
         file_contents = file.read()
 
@@ -40,17 +45,20 @@ def decrypt(key):
     for char in file_contents:
         if char.isupper():
             char_index = ALPHABET_UPPERCASE.index(char)
-            char = ALPHABET_UPPERCASE[(char_index - n) % 25]
+            char = ALPHABET_UPPERCASE[25 % (char_index - n)]
+            plainString += char
         elif char.islower():
             char_index = ALPHABET_LOWERCASE.index(char)
-            char = ALPHABET_LOWERCASE[(char_index - n) % 25]
+            char = ALPHABET_LOWERCASE[25 % (char_index - n)]
+            plainString += char
         elif char.isdigit():
             char_index = NUMBERS.index(char)
-            char = NUMBERS[(char_index - n) % 8]
+            char = NUMBERS[8 % (char_index - n)]
+            plainString += char
 
     # Put it file contents into plaintext
     with open(PLAIN_PATH, 'w') as file:
-        file.write(file_contents)
+        file.write(plainString)
 
 
 def brute_force():

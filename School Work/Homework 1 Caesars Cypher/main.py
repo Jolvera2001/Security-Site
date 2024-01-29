@@ -18,6 +18,8 @@ def main():
         elif user_input == 2:
             # Ask for Key value n
             user_n_input = input("Enter your key N:")
+            ccLib.decrypt(user_n_input)
+            print("Decrypted")
 
         elif user_input == 3:
             # Break into encryption
@@ -25,6 +27,7 @@ def main():
 
         elif user_input == 4:
             # Exit
+            print("Goodbye")
             break
 
 
