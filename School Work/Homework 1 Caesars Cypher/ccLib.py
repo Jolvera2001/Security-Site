@@ -18,15 +18,17 @@ def encrypt(key):
     for char in file_contents:
         if char.isupper():
             char_index = ALPHABET_UPPERCASE.index(char)
-            char = ALPHABET_UPPERCASE[25 % (char_index + n)]
+            char = ALPHABET_UPPERCASE[(char_index + n) % 26]
             cipherString += char
         elif char.islower():
             char_index = ALPHABET_LOWERCASE.index(char)
-            char = ALPHABET_LOWERCASE[25 % (char_index + n)]
+            char = ALPHABET_LOWERCASE[(char_index + n) % 26]
             cipherString += char
         elif char.isdigit():
             char_index = NUMBERS.index(char)
-            char = NUMBERS[8 % (char_index + n)]
+            char = NUMBERS[(char_index + n) % 9]
+            cipherString += char
+        else:
             cipherString += char
 
     # Put it file contents into Cyphertext
@@ -45,15 +47,17 @@ def decrypt(key):
     for char in file_contents:
         if char.isupper():
             char_index = ALPHABET_UPPERCASE.index(char)
-            char = ALPHABET_UPPERCASE[25 % (char_index - n)]
+            char = ALPHABET_UPPERCASE[(char_index - n) % 26]
             plainString += char
         elif char.islower():
             char_index = ALPHABET_LOWERCASE.index(char)
-            char = ALPHABET_LOWERCASE[25 % (char_index - n)]
+            char = ALPHABET_LOWERCASE[(char_index - n) % 26]
             plainString += char
         elif char.isdigit():
             char_index = NUMBERS.index(char)
-            char = NUMBERS[8 % (char_index - n)]
+            char = NUMBERS[(char_index - n) % 9]
+            plainString += char
+        else:
             plainString += char
 
     # Put it file contents into plaintext
