@@ -23,7 +23,7 @@ def main():
 
         elif user_input == 3:
             # Break into encryption
-            print("Placeholder")
+            ccLib.brute_force()
 
         elif user_input == 4:
             # Exit

@@ -75,4 +75,45 @@ def decrypt(key):
 
 
 def brute_force():
-    print("Placeholder")
+    COMMON_LETTERS = ['E', 'T', 'A', 'O', 'I', 'N', 'S', 'R', 'H', 'L']
+    predicted_keys = list()
+    file_contents = ""
+    with open(CIPHER_PATH, 'r') as file:
+        file_contents = file.read()
+
+    # Put the chars in a dictionary
+    char_dict = {}
+    for char in file_contents:
+        char_dict[char] = char_dict.get(char, 0) + 1
+
+    # getting the most common
+    most_common = max(char_dict, key=char_dict.get)
+
+    # predicting the key from the most common
+    if most_common in ALPHABET_UPPERCASE:
+        for char in COMMON_LETTERS:
+            prediction_key = (max(ALPHABET_UPPERCASE.index(most_common), ALPHABET_UPPERCASE.index(char)) - min(
+                ALPHABET_UPPERCASE.index(most_common), ALPHABET_UPPERCASE.index(char)))
+            predicted_keys.append(prediction_key)
+    elif most_common in ALPHABET_LOWERCASE:
+        for char in COMMON_LETTERS:
+            prediction_key = (max(ALPHABET_LOWERCASE.index(most_common), ALPHABET_LOWERCASE.index(char.lower())) - min(
+                ALPHABET_LOWERCASE.index(most_common), ALPHABET_LOWERCASE.index(char.lower())))
+            predicted_keys.append(prediction_key)
+    elif most_common in SPECIAL_CHARS:
+            prediction_key = (max(SPECIAL_CHARS.index(' '), SPECIAL_CHARS.index(most_common)) - min(
+                SPECIAL_CHARS.index(' '), SPECIAL_CHARS.index(most_common)))
+            predicted_keys.append(prediction_key)
+
+    for key in predicted_keys:
+        print(f"key: {key}")
+
+    user_input = input("Are any of these keys correct? Y/N")
+
+    if user_input.lower() == 'y':
+        print("Encryption broken!")
+    else:
+        print("Couldn't break encryption...")
+
+
+
