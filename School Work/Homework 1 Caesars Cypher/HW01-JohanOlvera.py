@@ -1,5 +1,6 @@
 import ccLib
 
+# Using Python 3.12
 def main():
     while True:
         user_input = int(input("""
@@ -11,13 +12,21 @@ def main():
         """))
         if user_input == 1:
             # Ask for Key value n
-            user_n_input = input("Enter your key N: ")
+            user_n_input = ""
+
+            while not user_n_input.isnumeric():
+                user_n_input = input("Enter your key N: ")
+
             ccLib.encrypt(user_n_input)
             print("Encrypted")
 
         elif user_input == 2:
             # Ask for Key value n
-            user_n_input = input("Enter your key N:")
+            user_n_input = ""
+
+            while not user_n_input.isnumeric():
+                user_n_input = input("Enter your key N: ")
+
             ccLib.decrypt(user_n_input)
             print("Decrypted")
 
