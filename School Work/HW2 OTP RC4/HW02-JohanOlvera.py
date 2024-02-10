@@ -12,14 +12,14 @@ def main():
             # get their plaintext and key
             user_pt_input = input("Please enter your plaintext")
             user_key_input = input("Please enter your key (same length as plaintext)")
-            cipherText = OtpRc4Lib.Otp(user_pt_input, user_key_input)
-            print("Here is your Ciphertext: \n" + cipherText)
+            ciphertext = OtpRc4Lib.otp(user_pt_input, user_key_input)
+            print("Here is your Ciphertext: \n" + ciphertext)
 
         elif user_input == 2:
             user_pt_input = input("Please enter your plaintext")
             user_key_input = input("Please enter your key")
-            cipherText = OtpRc4Lib.Rc4(user_pt_input, user_key_input)
-            print("Here is your Ciphertext: \n" + cipherText)
+            ciphertext = OtpRc4Lib.rc4(user_pt_input, user_key_input)
+            print("Here is your Ciphertext: \n" + ciphertext)
 
         elif user_input == 3:
             print("goodbye!")
