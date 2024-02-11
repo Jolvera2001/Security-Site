@@ -28,5 +28,14 @@ def otp(pt, key):
 
 def rc4(pt, key):
     # Initialization
-    test = 100 ^ 500
+    s = []
+    k = []
+
+    for i in range(256):
+        s[i] = i
+        k[i] = key[i % len(key)]
+
+
+
     # KBG
+
