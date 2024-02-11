@@ -35,7 +35,11 @@ def rc4(pt, key):
         s[i] = i
         k[i] = key[i % len(key)]
 
+    j = 0
+    for i in range(256):
+        j = (j + s[i] + k[i]) % 256
+        s[i] = s[j]
 
-
+    i = j = 0
     # KBG
 
