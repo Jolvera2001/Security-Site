@@ -1,3 +1,6 @@
+import base64
+
+
 def otp(pt, key):
     if len(key) != len(pt):
         return "Pt and Key are not the same size!"
@@ -24,12 +27,6 @@ def otp(pt, key):
 
 
 def rc4(pt, key):
-    '''
-    We need to use otp at the end when the
-    shortkey is expanded to the size of the pt
-    1. Extend key
-    2. otp with extended key
-    '''
     # Initialization
     test = 100 ^ 500
     # KBG
