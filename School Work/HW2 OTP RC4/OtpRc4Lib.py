@@ -2,6 +2,8 @@ import base64
 
 
 def otp(pt, key):
+    # TODO: Implement to where the function only returns one, but do it twice
+    # on the main
     if len(key) != len(pt):
         return "Pt and Key are not the same size!"
 
