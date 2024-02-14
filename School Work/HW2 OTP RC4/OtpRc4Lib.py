@@ -17,9 +17,12 @@ def rc4(pt, key):
     s = []
     k = []
 
+    # putting 0-255 in s
+    # putting repeated Key chars 256 times
+    # chars are converted to ascii to properly add onto ints
     for i in range(256):
-        s[i] = i
-        k[i] = key[i % len(key)]
+        s.append(i)
+        k.append(ord(key[i % len(key)]))
 
     j = 0
     for i in range(256):
@@ -29,14 +32,22 @@ def rc4(pt, key):
     i = j = 0
 
     # KBG
-    i = (i + 1) % 256
-    j = (j + s[i]) % 256
-    temp = s[i]
-    s[i] = s[j]
-    s[j] = temp
-    t = (s[i] + s[j]) % 256
+    keystream_word = ""
 
-    # change num into character with chr and ord
-    keystream_Byte = s[t]
+    while len(keystream_word) != len(pt):
+        i = (i + 1) % 256
+        j = (j + s[i]) % 256
+        temp = s[i]
+        s[i] = s[j]
+        s[j] = temp
+        t = (s[i] + s[j]) % 256
+
+        # change num into character with chr and ord
+        keystream_word += chr(s[t])
+
+    # then we send through OTP
+    encrypted = otp(pt, keystream_word)
+
+    return encrypted
 
 
