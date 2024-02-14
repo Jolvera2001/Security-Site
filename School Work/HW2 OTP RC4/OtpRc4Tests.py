@@ -6,35 +6,36 @@ class OtpUnitTests(unittest.TestCase):
 
     def test_opt_basic(self):
         string1 = "Hello World!"
-        key1 = "yellow borld"
-        string2 = "h3llo w0rld!"
-        key2 = "12345 67890!"
-        string3 = "th1s ' is weirdn nn"
-        key3 = "1234 ; we dfenfn nn"
+        key1 = "somet hinga!"
+        string2 = "I hope this ends up super well! wishing for the best"
+        key2 = "i h035 ajwewwdwg gr super nniei w1dhiapgbii19n89i3st"
+        string3 = "...."
+        key3 = "4444"
 
-        throwaway1, check1 = OR.otp(string1, key1)
-        throwaway2, check2 = OR.otp(string2, key2)
-        throwaway3, check3 = OR.otp(string3, key3)
+        cipher1 = OR.otp(string1, key1)
+        cipher2 = OR.otp(string2, key2)
+        cipher3 = OR.otp(string3, key3)
 
-        self.assertEqual(check1, string1)
-        self.assertEqual(check2, string2)
-        self.assertEqual(check3, string3)
+        self.assertTrue(OR.otp(cipher1, key1) == string1)
+        self.assertTrue(OR.otp(cipher2, key2) == string2)
+        self.assertTrue(OR.otp(cipher3, key3) == string3)
 
     def test_Rc4_basic(self):
         string1 = "Hello World!"
-        key1 = "yellow borld"
-        string2 = "h3llo w0rld!"
-        key2 = "12345 67890!"
-        string3 = "th1s ' is weirdn nn"
-        key3 = "1234 ; we dfenfn nn"
+        key1 = "awz"
+        string2 = "I hope this ends up super well! wishing for the best"
+        key2 = "wack"
+        string3 = "...."
+        key3 = "1"
 
-        throwaway1, check1 = OR.rc4(string1, key1)
-        throwaway2, check2 = OR.rc4(string2, key2)
-        throwaway3, check3 = OR.rc4(string3, key3)
+        cipher1 = OR.rc4(string1, key1)
+        cipher2 = OR.rc4(string2, key2)
+        cipher3 = OR.rc4(string3, key3)
 
-        self.assertEqual(check1, string1)
-        self.assertEqual(check2, string2)
-        self.assertEqual(check3, string3)
+        self.assertTrue(OR.rc4(cipher1, key1) == string1)
+        self.assertTrue(OR.rc4(cipher2, key2) == string2)
+        self.assertTrue(OR.rc4(cipher3, key3) == string3)
+
 
 if __name__ == "__main__":
     unittest.main()
